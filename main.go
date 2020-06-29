@@ -8,12 +8,13 @@ func main() {
 
 	array := []int{1, 4, 3, 4, 5, 2, 6, 8}
 
-	bubbleSort(array)
-	insertionSort(array)
-	selectionSort(array)
+	//bubbleSort(array)
+	//insertionSort(array)
+	//selectionSort(array)
+	quickSort(array, 0, len(array)-1)
 }
 
-func bubbleSort(array []int)  {
+func bubbleSort(array []int) {
 	for i := 0; i < len(array) - 1; i++ {
 		for j := 0; j < len(array) - i - 1; j++ {
 			if array[j] > array[j + 1] {
@@ -26,7 +27,7 @@ func bubbleSort(array []int)  {
 	fmt.Println(array)
 }
 
-func insertionSort(array []int)  {
+func insertionSort(array []int) {
 	for i := 1; i < len(array); i++ {
 		current := array[i]
 		j := i - 1
@@ -40,7 +41,7 @@ func insertionSort(array []int)  {
 	fmt.Println(array)
 }
 
-func selectionSort(array []int){
+func selectionSort(array []int) {
 	for i := 0; i < len(array); i++ {
 		min := array[i]
 		minId := i
@@ -56,4 +57,37 @@ func selectionSort(array []int){
 		array[minId] = tmp
 	}
 	fmt.Println(array)
+}
+
+func quickSort(array []int, start int, end int) {
+	prt := partition(array, start, end)
+
+	if prt - 1 > start{
+		quickSort(array, start, prt - 1)
+	}
+
+	if prt + 1 < end{
+		quickSort(array, prt + 1, end)
+	}
+
+}
+
+
+func partition(array []int, start int, end int) int{
+	pivot := array[end]
+
+	for i := start; i < end; i++ {
+		if array[i] < pivot {
+			tmp := array[start]
+			array[start] = array[i]
+			array[i] = tmp
+			start++
+		}
+	}
+
+	tmp := array[start]
+	array[start] = pivot
+	array[end] = tmp
+
+	return start
 }
