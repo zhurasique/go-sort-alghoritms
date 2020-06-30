@@ -12,6 +12,17 @@ func main() {
 	//insertionSort(array)
 	//selectionSort(array)
 	quickSort(array, 0, len(array)-1)
+	evenOdd(array)
+}
+
+func evenOdd(array []int) {
+	//var mergedArray []int
+	//not even
+	for i := 0; i < len(array); i++ {
+		if array[i] % 2 != 0 {
+			fmt.Println(array[i])
+		}
+	}
 }
 
 func bubbleSort(array []int) {
